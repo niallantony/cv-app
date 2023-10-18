@@ -1,33 +1,32 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Button } from './components/Button'
+import { Menu } from './components/Menu'
+import { Document } from './components/Document'
+import { Info } from './components/Info'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [create, setCreate] = useState(null);
+  const [cv, setCv] = useState(null);
+
+  function createDocument() {
+    setCreate(<Info onSubmit={buildCv}/>)
+  }
+
+  function buildCv(name) {
+     setCv(<Document person={name} />);
+     setCreate(null);
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <Menu menuName='file-menu'>
+      <Button buttonType="new" text="New CV" onClick={createDocument} />
+      <Button buttonType="load" text="Load CV" />
+      {create}
+      {cv}
+    </Menu>
     </>
   )
 }
