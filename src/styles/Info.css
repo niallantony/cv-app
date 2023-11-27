@@ -1,0 +1,110 @@
+.info-pane {
+    display:grid;
+    grid-template: auto / 1fr 1fr;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    position:relative;
+    background-color: #FEFEFE;
+}
+
+.info-pane:hover {
+    filter: brightness(98%);
+}
+
+.warning {
+    position:absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: fit-content;
+    background-color: #FEFEFE;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid gray;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+}
+
+.warning > h2 {
+    grid-column: span 2;
+}
+.new-cv-dialog {
+    z-index: 4;
+}
+
+.info-pane:hover > .delete-info {
+    display: flex;
+}
+
+.body-text, .start, .finished {
+    margin: 1rem 0 0;
+    justify-self: left;
+}
+
+.title, .body-text {
+    grid-column: span 2;
+}
+
+.title {
+    justify-self: left;
+}
+
+.section-form {
+    display: grid;
+    grid-template: auto / 1fr 1fr;
+    padding: 1rem 2rem;
+    column-gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.title-in , .body-in {
+    grid-column: span 2;
+}
+
+.section-form > label {
+    margin-bottom: 1rem;
+    display: grid;
+    text-align: left;
+}
+
+.title-in {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 1rem;
+}
+
+.start-in, .end-in {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+}
+.title-in > input {
+    grid-column: 2 / 5;
+}
+
+.section-form > label > input, .section-form > label > textarea {
+    padding: 5px;
+    border: 1px solid gray;
+}
+
+.section-submit, .section-cancel {
+    grid-column: span 1;
+}
+
+.delete-info {
+    position:absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    display: none;
+    padding:0;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-info > img {
+    width: 16px;
+    height: 16px;
+}

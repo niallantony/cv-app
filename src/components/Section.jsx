@@ -11,24 +11,34 @@ export function Section({title}) {
     const [formOpen, setFormOpen] = useState(false);
     const dateInputs = title === 'Education' || title === "Work" || title === "Projects" ? 2 : title === "Awards" ? 1 : 0 ;
     const hasTitle = title === "Personal" ? false : true ; 
+
     function buildSection(details) {
         setInfoList([...infoList, {id: uuidv4(), title: details.title, startDate: details.startDate, endDate: details.endDate, body: details.body}])
-        setFormOpen(false);
         setInfoForm(null);
-        console.log("Created: ", infoList)
+        setFormOpen(false);
     }
+
+    function closeForm() {
+        setInfoForm(null);
+        setFormOpen(false);
+    }
+
+    function deleteSection(toDelete) {
+        setInfoList(infoList.filter((info) => info.id != toDelete))
+    }
+
     function createSubSection() {
         setFormOpen(formOpen ? false : true);
         console.log("Creating SubSection")
-        if (formOpen) {
-            setInfoForm(<InfoSection onSubmit={buildSection} dateInputs={dateInputs} hasTitle={hasTitle}></InfoSection>)
+        if (!formOpen) {
+            setInfoForm(<InfoSection onSubmit={buildSection} onCancel={closeForm} dateInputs={dateInputs} hasTitle={hasTitle}></InfoSection>)
         } 
     }
 
     return (<div className="section">
                 <h2>{title}</h2>
                 {infoList.map((info) => 
-                    <InfoExp key={info.id} info={info}/>)}
+                        <InfoExp key={info.id} info={info} onDelete={() => deleteSection(info.id)}/>)}
                 {infoForm}
                 <Button buttonType='section-add' text={(<img src={AddSvg} alt="Add Button"/>)} onClick={createSubSection} />
             </div>)

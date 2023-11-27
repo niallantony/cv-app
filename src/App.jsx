@@ -16,7 +16,7 @@ function App() {
     setNewOpen(true)
     if (cv) {
       console.log("Warning activated")
-      setCreate(<InfoWarning onAccept={resetCv} onDecline={() => setNewOpen(false)}/>)
+      setCreate(<InfoWarning type="new-cv" onAccept={resetCv} onDecline={() => setNewOpen(false)} text="Delete current CV?"/>)
     } else {
       setCreate(<Info onSubmit={buildCv}/>)
     }
