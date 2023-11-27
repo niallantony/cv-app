@@ -1,0 +1,11 @@
+.file-menu {
+    display:flex;
+    justify-content: left;
+    border-bottom: 1px solid gray;
+    padding-bottom: 1rem;
+}
+
+.file-menu button {
+    margin-right: 1rem;
+}
+
