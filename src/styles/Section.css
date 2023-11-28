@@ -3,6 +3,45 @@
     background-color: white;
     border-radius: 15px;
     margin: 1rem;
+    position:relative;
+}
+
+.section:hover > .section-delete,
+.section:hover > .section-up,
+.section:hover > .section-down {
+    display: flex;
+}
+
+.section-delete,
+.section-up,
+.section-down {
+    position: absolute;
+    display: none;
+    top: 1rem;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-delete > img,
+.section-up > img,
+.section-down > img {
+    width: 16px;
+    height: 16px;
+}
+
+.section-up {
+    right: 2rem;
+}
+
+.section-down {
+    right: 4.5rem;
+}
+
+.section-delete {
+    right: 7rem;
 }
 
 h2 {

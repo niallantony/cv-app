@@ -4,9 +4,11 @@ import { InfoSection, InfoExp } from './Info';
 import "../styles/Section.css"
 import AddSvg from "../assets/add.svg";
 import DeleteSvg from "../assets/delete.svg";
+import UpSvg from "../assets/up.svg"
+import DownSvg from "../assets/down.svg"
 import {v4 as uuidv4} from 'uuid';
 
-export function Section({title}) {
+export function Section({title, onUp, onDown, onDelete}) {
     const [infoList, setInfoList] = useState([]);
     const [infoForm, setInfoForm] = useState(null);
     const [formOpen, setFormOpen] = useState(false);
@@ -83,6 +85,9 @@ export function Section({title}) {
 
     return (<div className="section">
                 <h2>{title}</h2>
+                <Button buttonType='section-delete' text={<img src={DeleteSvg} alt="Delete Button"/>} onClick={onDelete} />
+                <Button buttonType='section-up' text={<img src={UpSvg} alt="Move Up Section Button"/>} onClick={onUp} />
+                <Button buttonType='section-down' text={<img src={DownSvg} alt="Move Down Section Button"/>} onClick={onDown} />
                 {sortDates(infoList).map((info) => decideInfoForm(info))}
                 {infoForm}
                 <Button buttonType='section-add' text={(<img src={AddSvg} alt="Add Button"/>)} onClick={createSubSection} />

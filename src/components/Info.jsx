@@ -23,12 +23,12 @@ export function Info({onSubmit}) {
 )
 }
 
-export function InfoSection({onSubmit,dateInputs,hasTitle,onCancel, inputValue}) {
+export function InfoSection({onSubmit,dateInputs,hasTitle,onCancel,inputValue}) {
     const [title, setTitle] = useState(inputValue ? inputValue.title : '');
     const [startDate, setStartDate] = useState(inputValue ? inputValue.startDate : '');
     const [endDate, setEndDate] = useState(inputValue ? inputValue.endDate : '');
     const [body, setBody] = useState(inputValue ? inputValue.body : '');
-    const [initialise, setInitialise] = useState(true);    
+ 
     function handleSubmit(e) {
         e.preventDefault();
         onSubmit({title:title,
