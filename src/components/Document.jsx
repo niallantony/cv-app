@@ -95,7 +95,7 @@ export function Document({person}) {
             <h1> {details.name}</h1>
             <Button buttonType="update-details" text={<img src={EditSvg} alt="Edit Details Button"/>} onClick={editDetails} />
             {buildDetails().map((detail) => {
-                return (<h3>{detail} : {details[detail]}</h3>)
+                return (<h3 key={uuidv4()}>{detail} : {details[detail]}</h3>)
             })}
             {editPane}
             {orderedSections().map((section) => {

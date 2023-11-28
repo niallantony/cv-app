@@ -125,12 +125,12 @@ export function InfoExp({info, onDelete, onEdit}) {
             return (<div className='title'>{info.title}</div>)
         } else {
             return;
-        };
+        }
     };
     const startDate = () => {
         if (info.startDate) {
             return (<div className='start'>Started: {info.startDate}</div>)
-        };
+        }
     }
     const editSection = () => {
         onEdit(info);
