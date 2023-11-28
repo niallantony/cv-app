@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "./Button";
-import { InfoSection, InfoExp } from './Info';
+import { InfoWarning, InfoSection, InfoExp } from './Info';
 import "../styles/Section.css"
 import AddSvg from "../assets/add.svg";
 import DeleteSvg from "../assets/delete.svg";
@@ -12,6 +12,7 @@ export function Section({title, onUp, onDown, onDelete}) {
     const [infoList, setInfoList] = useState([]);
     const [infoForm, setInfoForm] = useState(null);
     const [formOpen, setFormOpen] = useState(false);
+    const [confirm, setConfirm] = useState(null);
     const dateInputs = title === 'Education' || title === "Work" || title === "Projects" ? 2 : title === "Awards" ? 1 : 0 ;
     const hasTitle = title === "Personal" ? false : true ; 
 
@@ -20,6 +21,12 @@ export function Section({title, onUp, onDown, onDelete}) {
         setInfoForm(null);
         setFormOpen(false);
         console.log(infoList);
+    }
+
+    const deleteConfirm = () => {
+        if (!confirm) {
+            setConfirm(<InfoWarning type="warning" text="Delete this Section?" onAccept={onDelete} onDecline={() => setConfirm(null)}/>)
+        }
     }
 
     function editSubmit(toDelete, edited) {
@@ -85,9 +92,10 @@ export function Section({title, onUp, onDown, onDelete}) {
 
     return (<div className="section">
                 <h2>{title}</h2>
-                <Button buttonType='section-delete' text={<img src={DeleteSvg} alt="Delete Button"/>} onClick={onDelete} />
+                <Button buttonType='section-delete' text={<img src={DeleteSvg} alt="Delete Button"/>} onClick={deleteConfirm} />
                 <Button buttonType='section-up' text={<img src={UpSvg} alt="Move Up Section Button"/>} onClick={onUp} />
                 <Button buttonType='section-down' text={<img src={DownSvg} alt="Move Down Section Button"/>} onClick={onDown} />
+                {confirm}
                 {sortDates(infoList).map((info) => decideInfoForm(info))}
                 {infoForm}
                 <Button buttonType='section-add' text={(<img src={AddSvg} alt="Add Button"/>)} onClick={createSubSection} />
