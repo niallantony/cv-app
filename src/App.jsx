@@ -4,6 +4,7 @@ import { Menu } from './components/Menu'
 import { Document } from './components/Document'
 import { Info, InfoWarning } from './components/Info'
 import { Dialog } from './components/Dialog'
+import { Footer } from './components/Footer'
 import './App.css'
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
       {create}
     </Dialog>
       {cv}
+    <Footer />
     </>
   )
 }

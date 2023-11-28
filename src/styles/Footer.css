@@ -1,0 +1,27 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    display:flex;
+    justify-content: center;
+    width: inherit;
+    padding: 6px;
+    left:0;
+    right:0;
+    margin:auto;
+    background-color: white;
+    opacity: 65%;
+}
+
+.footer img {
+    width: 16px;
+    margin: 0 16px;
+}
+
+a {
+    color: #4e4e5e;
+    font-size: smaller;
+}
+
+a:hover, a:active {
+    color: #4e4ebe;
+}
