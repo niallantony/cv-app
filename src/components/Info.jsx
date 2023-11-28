@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button } from './Button';
 import "../styles/Info.css";
 import DeleteSvg from "../assets/delete.svg";
+import EditSvg from "../assets/edit.svg"
 
 
 export function Info({onSubmit}) {
@@ -22,12 +23,12 @@ export function Info({onSubmit}) {
 )
 }
 
-export function InfoSection({onSubmit,dateInputs,hasTitle,onCancel}) {
-    const [title, setTitle] = useState('');
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const [body, setBody] = useState('');
-
+export function InfoSection({onSubmit,dateInputs,hasTitle,onCancel, inputValue}) {
+    const [title, setTitle] = useState(inputValue ? inputValue.title : '');
+    const [startDate, setStartDate] = useState(inputValue ? inputValue.startDate : '');
+    const [endDate, setEndDate] = useState(inputValue ? inputValue.endDate : '');
+    const [body, setBody] = useState(inputValue ? inputValue.body : '');
+    const [initialise, setInitialise] = useState(true);    
     function handleSubmit(e) {
         e.preventDefault();
         onSubmit({title:title,
@@ -35,29 +36,39 @@ export function InfoSection({onSubmit,dateInputs,hasTitle,onCancel}) {
                     endDate:endDate,
                     body:body});
     }
-    const dateFields = () => {
+    const buildFields = () => {
+       return  (<>
+                    {titleField(title)}
+                    {dateFields(startDate, endDate)}
+                    <label className='body-in' htmlFor='bodyText'>
+                        <textarea value={body} id='bodyText' rows="5" onChange={(e) => setBody(e.target.value)}/>
+                    </label>
+                </>)
+    }
+
+    const dateFields = (startValue, endValue) => {
         switch(dateInputs) {
             case 0:
                 return;
             case 1:
                 return (<label className='start-in' htmlFor='startDate'> Date:
-                    <input type='date' id='startDate' onChange={(e) => setStartDate(e.target.value)}/>
+                    <input type='date' value={startValue} id='startDate' onChange={(e) => setStartDate(e.target.value)}/>
                 </label>)
             case 2:
                 return (<><label className='start-in' htmlFor='startDate'> Start Date:
-                            <input type='date' id='startDate' onChange={(e) => setStartDate(e.target.value)}/>
+                            <input type='date' value={startValue} id='startDate' onChange={(e) => setStartDate(e.target.value)}/>
                         </label>
                         <label className='end-in' htmlFor='endDate'> End Date:
-                            <input type='date' id='endDate' onChange={(e) => setEndDate(e.target.value)}/>
+                            <input type='date' value={endValue} id='endDate' onChange={(e) => setEndDate(e.target.value)}/>
                         </label></>);
             default:
                 return
         }
     }
-    const titleField = () => {
+    const titleField = (title) => {
         if (hasTitle) {
             return (<label className='title-in' htmlFor='title'>Title: 
-                <input type='text' id='title' onChange={(e) => setTitle(e.target.value)}/>
+                <input type='text' value={title} id='title' onChange={(e) => setTitle(e.target.value)}/>
             </label>)
         }
     }
@@ -66,17 +77,13 @@ export function InfoSection({onSubmit,dateInputs,hasTitle,onCancel}) {
         onCancel();
     }
     return (<form className='section-form'>
-        {titleField()}
-        {dateFields()}
-        <label className='body-in' htmlFor='bodyText'>
-            <textarea id='bodyText' rows="5" onChange={(e) => setBody(e.target.value)}/>
-        </label>
+        {buildFields()}
         <Button buttonType="section-submit" text="Add" onClick={(e) => handleSubmit(e)}/>
         <Button buttonType="section-cancle" text="Cancel" onClick={(e) => handleCancel(e)}/>
     </form>)
 }
 
-export function InfoExp({info, onDelete}) {
+export function InfoExp({info, onDelete, onEdit}) {
     const [confirm, setConfirm] = useState(null);
 
     const deleteConfirm = () => {
@@ -96,6 +103,9 @@ export function InfoExp({info, onDelete}) {
             return (<div className='start'>Started: {info.startDate}</div>)
         };
     }
+    const editSection = () => {
+        onEdit(info);
+    }
     const endDate = () => {
         if (info.endDate) {
             return (<div className='finished'>Finished: {info.endDate}</div>)
@@ -111,6 +121,9 @@ export function InfoExp({info, onDelete}) {
         {body}
         <button className="delete-info" onClick={deleteConfirm}>
             <img src={DeleteSvg} alt="Delete Button" />
+        </button>
+        <button className="edit-info" onClick={editSection}>
+            <img src={EditSvg} alt="Edit Button" />
         </button>
     </div>)
     
