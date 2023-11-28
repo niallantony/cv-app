@@ -10,10 +10,15 @@ export function Info({onSubmit, prevValues = null}) {
     const [phone, setPhone] = useState(prevValues ? prevValues.phone : '');
     const [email, setEmail] = useState(prevValues ? prevValues.email : '');
     const [website, setWebsite] = useState(prevValues ? prevValues.website : '');
+    const [inputWarning, setInputWarning] = useState(null);
 
     function handleSubmit(e) {
         console.log("Previous Values: ",prevValues);
         e.preventDefault();
+        if (name === '') {
+            setInputWarning('Please Input Name...');
+            return;
+        } 
         onSubmit({
             name:name,
             phone:phone,
@@ -25,7 +30,8 @@ export function Info({onSubmit, prevValues = null}) {
     return (
                 <form className="info-form">
                     <label htmlFor='cvName'> Name:
-                        <input type='text' id='cvName' value={name} onChange={(e) => setName(e.target.value)}/>
+                        <input type='text' placeholder={inputWarning ? inputWarning : ''} required={true} id='cvName' value={name} onChange={(e) => setName(e.target.value)}/>
+
                     </label>
                     <label htmlFor="cvPhone"> Phone:
                         <input type="input" id='cvPhone' value={phone} onChange={(e) => setPhone(e.target.value)} />
@@ -49,6 +55,7 @@ export function InfoSection({onSubmit,dateInputs,hasTitle,onCancel,inputValue}) 
  
     function handleSubmit(e) {
         e.preventDefault();
+        console.log("Body: ",body);
         onSubmit({title:title,
                     startDate:startDate,
                     endDate:endDate,
@@ -109,6 +116,10 @@ export function InfoExp({info, onDelete, onEdit}) {
             setConfirm(<InfoWarning type="warning" text="Delete this Info?" onAccept={onDelete} onDecline={() => setConfirm(null)}/>)
         }
     }
+    const bodyTransform = () => {
+        const splitBody = info.body.split('\n');
+        return (<div className='body-text'>{splitBody.map((para) =>(<>{para}<br /></>))}</div>)
+    }
     const title = () => {
         if (info.title != '') {
             return (<div className='title'>{info.title}</div>)
@@ -129,14 +140,13 @@ export function InfoExp({info, onDelete, onEdit}) {
             return (<div className='finished'>Finished: {info.endDate}</div>)
         }
     };
-    const body = (<div className="body-text">{info.body}</div>)
 
     return (<div className="info-pane">
         {confirm}
         {title()}
         {startDate()}
         {endDate()}
-        {body}
+        {bodyTransform()}
         <button className="delete-info" onClick={deleteConfirm}>
             <img src={DeleteSvg} alt="Delete Button" />
         </button>

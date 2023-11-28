@@ -4,7 +4,7 @@ import {useRef} from "react";
 
 export function Button({buttonType,text,onClick,disabled = false}) {
     return (
-        <button className={buttonType} onClick={onClick} disabled={disabled}>
+        <button className={`${buttonType} no-print`} onClick={onClick} disabled={disabled}>
             {text}
         </button>
     )
@@ -32,8 +32,8 @@ export function AddButton({buttonType,onClick,onSelect,choices,isOpen}) {
     document.addEventListener('mousedown', closeOpenMenus)
 
     return (
-        <div className={`add-button-container ${buttonType}`}>
-            <button className={buttonType} onClick={onClick}>
+        <div className={`add-button-container no-print ${buttonType}`}>
+            <button className={`${buttonType} no-print`} onClick={onClick}>
                 <img src={AddSvg} alt="Add Button"/>
             </button>
             <div ref={menuPan} className={`dropdown ${dropdownClasses}`} display={isOpen}>

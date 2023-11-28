@@ -39,7 +39,6 @@ export function Section({title, onUp, onDown, onDelete}) {
             }
         const tempList = infoList.filter((info) => info.id != toDelete.id);
         const newList = tempList.length ? [...tempList, editEntry] : [editEntry]
-        console.log("Temp : ", tempList, "new: " , newList);
         setInfoList(newList);
     }
 

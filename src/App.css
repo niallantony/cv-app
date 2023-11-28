@@ -6,3 +6,47 @@
   background-color: white;
   width: min(85dvw,800px)
 }
+
+@media print {
+  button.no-print {
+    display:none;
+  }
+  div.no-print {
+    display:none;
+  }
+  div.resume {
+    border: 0;
+    padding: 0;
+  }
+  .resume .section {
+    margin: 0 1rem;
+    padding: 0 1rem;
+  }
+  .resume .section:first-of-type {
+    margin-top: 1rem;
+  }
+  .resume h3 {
+    margin: 0 3rem;
+    font-size: small;
+  }
+  .section h2 {
+    font-size: medium;
+    border: 0;
+  }
+  .section .info-pane {
+    padding-left: 0;
+    font-size: small;
+    margin:0;
+    padding: 0 0 1rem 0;
+  }
+  .section .info-pane div {
+    margin: 0;
+  }
+  .section .info-pane .title {
+    font-style: italic;
+  }
+  .section .info-pane .start,
+  .section .info-pane .body-text {
+    margin-left: 1rem;
+  }
+}

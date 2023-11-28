@@ -33,13 +33,16 @@ function App() {
     setNewOpen(false);
     setCreate(null);
   }
-
+  
+  function printPage() {
+    window.print();
+  }
 
   return (
     <>
     <Menu menuName='file-menu'>
       <Button buttonType="new" text="New CV" onClick={createDocument} />
-      <Button buttonType="load" text="Load CV" />
+      <Button buttonType="load" text="Print CV" onClick={printPage} />
     </Menu>
     <Dialog dialogType="new-cv-dialog" isOpen={newOpen}>
       {create}
