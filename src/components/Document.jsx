@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import { AddButton } from "./Button"
+import { AddButton, Button } from "./Button"
 import { Section } from './Section';
+import { Info } from './Info';
+import EditSvg from '../assets/edit.svg'
 
 import "../styles/Document.css"
 
@@ -14,9 +16,11 @@ export function Document({person}) {
             {name:"Personal", disabled:false},
         ]
     const [sectionOrder, setSectionOrder] = useState([]);
-    const [addList, setAddList] = useState(sectionAddList)
-    const [sectionList, setSectionList] = useState([])
-    const [showAdd, setShowAdd] = useState(false)
+    const [addList, setAddList] = useState(sectionAddList);
+    const [sectionList, setSectionList] = useState([]);
+    const [showAdd, setShowAdd] = useState(false);
+    const [details, setDetails] = useState(person);
+    const [editPane, setEditPane] = useState(null);
 
     const orderedSections = () => {
         return sectionList.sort((a,b) => sectionOrder.indexOf(a.title) - sectionOrder.indexOf(b.title));
@@ -49,6 +53,15 @@ export function Document({person}) {
         setSectionOrder(order);
     }
 
+    function editDetails() {
+        setEditPane(<Info onSubmit={(details) => submitEdit(details)} prevValues={details} />)
+    }
+
+    function submitEdit(details) {
+        setDetails(details);
+        setEditPane(null);
+    }
+
     function moveDown(section) {
         const order = [...sectionOrder];
         const currentIndex = order.indexOf(section.title);
@@ -69,10 +82,22 @@ export function Document({person}) {
         setSectionList(newList);
     }
 
+    function buildDetails() {
+        const completedDetails = [];
+        console.log(details);
+        Object.keys(details).forEach((detail) => {
+            if (details[detail] != '' && detail !== 'name') completedDetails.push(detail);
+        }) 
+        return completedDetails;
+    }
 
     return (<div className='resume'>
-            <h1> {person}'s CV </h1>
-            
+            <h1> {details.name}</h1>
+            <Button buttonType="update-details" text={<img src={EditSvg} alt="Edit Details Button"/>} onClick={editDetails} />
+            {buildDetails().map((detail) => {
+                return (<h3>{detail} : {details[detail]}</h3>)
+            })}
+            {editPane}
             {orderedSections().map((section) => {
                 return (<Section key={section.id} title={section.title} onUp={() => moveUp(section)}
                             onDown={() => moveDown(section)} onDelete={() => deleteSection(section)}/>)

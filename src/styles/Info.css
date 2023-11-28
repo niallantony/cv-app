@@ -147,3 +147,41 @@ dialog {
     width: 16px;
     height: 16px;
 }
+
+.info-form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #7d8a95;
+    color: #FEFEFE;
+    width: fit-content;
+    top: 3rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+dialog > .info-form {
+    border: 0;
+}
+.info-form > label {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    margin-bottom: 1rem;
+}
+
+.info-form > label > input {
+    margin-left: 1rem;
+}
+
+h3 {
+    text-align: left;
+    margin: 0 2rem 1rem;
+}
+
+.resume > h1 {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid black;
+}

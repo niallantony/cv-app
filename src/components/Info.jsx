@@ -5,20 +5,38 @@ import DeleteSvg from "../assets/delete.svg";
 import EditSvg from "../assets/edit.svg"
 
 
-export function Info({onSubmit}) {
-    const [name, setName] = useState('');
+export function Info({onSubmit, prevValues = null}) {
+    const [name, setName] = useState(prevValues ? prevValues.name :'');
+    const [phone, setPhone] = useState(prevValues ? prevValues.phone : '');
+    const [email, setEmail] = useState(prevValues ? prevValues.email : '');
+    const [website, setWebsite] = useState(prevValues ? prevValues.website : '');
 
     function handleSubmit(e) {
+        console.log("Previous Values: ",prevValues);
         e.preventDefault();
-        onSubmit(name);
+        onSubmit({
+            name:name,
+            phone:phone,
+            email:email,
+            website:website,
+        });
     }
 
     return (
                 <form className="info-form">
                     <label htmlFor='cvName'> Name:
-                        <input type='text' id='cvName' onChange={(e) => setName(e.target.value)}/>
+                        <input type='text' id='cvName' value={name} onChange={(e) => setName(e.target.value)}/>
                     </label>
-                    <Button buttonType='create' text='Create' onClick={(e) => handleSubmit(e)} />
+                    <label htmlFor="cvPhone"> Phone:
+                        <input type="input" id='cvPhone' value={phone} onChange={(e) => setPhone(e.target.value)} />
+                    </label>
+                    <label htmlFor="cvMail"> eMail: 
+                        <input type="email" id="cvMail" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    </label>
+                    <label htmlFor="cvWebsite"> Website: 
+                        <input type="text" id="cvWebsite" value={website} onChange={(e) => setWebsite(e.target.value)}/>                   
+                    </label>
+                    <Button buttonType='create' text='submit' onClick={(e) => handleSubmit(e)} />
                 </form>
 )
 }

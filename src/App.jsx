@@ -23,15 +23,15 @@ function App() {
   }
   
   function resetCv() {
-    setCreate(<Info onSubmit={buildCv}/>)
+    setCreate(<Info onSubmit={(details) => buildCv(details)} prevValues={null}/>)
+    setCv(null);
   }
 
-  
-
-  function buildCv(name) {
-     setCv(<Document person={name} />);
-     setNewOpen(false);
-     setCreate(null);
+  function buildCv(details) {
+    console.log("New Details: ",details);
+    setCv(<Document person={details}/>);
+    setNewOpen(false);
+    setCreate(null);
   }
 
 

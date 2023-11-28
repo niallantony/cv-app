@@ -11,3 +11,16 @@ h1 {
     box-sizing: border-box;
     border-radius: 15px;
 }
+
+.update-details {
+    position: absolute;
+    top: 1rem;
+    right: 7rem;
+    border-radius: 20px;
+    width:fit-content;
+    height:47px;
+}
+
+.update-details > img {
+    width: 1.5rem;
+}
