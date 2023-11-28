@@ -1,8 +1,16 @@
 .file-menu {
-    display:flex;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
     justify-content: left;
     border-bottom: 1px solid gray;
     padding-bottom: 1rem;
+}
+
+.header {
+    font-size: 3rem;
+    color: #a4a4b4;
+    grid-column: 4 / 5;
+    text-align: right;
 }
 
 .file-menu button {

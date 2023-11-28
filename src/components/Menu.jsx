@@ -5,6 +5,7 @@ export function Menu({children, menuName}) {
         <>
             <div className={`${menuName} no-print`}>
                 {children}
+                <h1 className="header">CV Builder</h1>
             </div>
         </>
     )
