@@ -84,4 +84,7 @@
   .section .info-pane .body-text {
     margin-left: 1rem;
   }
+  form {
+    display:none;
+  }
 }
