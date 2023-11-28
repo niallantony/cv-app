@@ -7,6 +7,41 @@
   width: min(85dvw,800px)
 }
 
+.no-page {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  margin: auto;
+  height: fit-content;
+  color: #c9c9cb;
+}
+.no-page > img {
+  filter: invert(87%) sepia(4%) saturate(84%) hue-rotate(201deg) brightness(98%) contrast(81%);
+  width: 10rem;
+}
+
+.hint-hand {
+  position: absolute;
+  filter: invert(87%) sepia(4%) saturate(84%) hue-rotate(201deg) brightness(98%) contrast(81%);
+  top: 8rem;
+  left: 6rem;
+  animation: 1s gesture infinite alternate;
+  animation-timing-function: linear;
+}
+
+@keyframes gesture {
+  from {
+    transform: rotate(10deg);
+  }
+  to {
+    transform: rotate(-10deg);
+  }
+  
+}
+
 @media print {
   button.no-print {
     display:none;

@@ -3,6 +3,8 @@ import { Button } from './components/Button'
 import { Menu } from './components/Menu'
 import { Document } from './components/Document'
 import { Info, InfoWarning } from './components/Info'
+import SwipeSvg from "./assets/swipe.svg"
+import PageSvg from "./assets/page.svg"
 import { Dialog } from './components/Dialog'
 import { Footer } from './components/Footer'
 import './App.css'
@@ -34,6 +36,14 @@ function App() {
     setNewOpen(false);
     setCreate(null);
   }
+
+  function emptyPage() {
+    return (<>    <div className="no-page no-print"><img src={PageSvg} alt="An empty page" />
+                  <p>Press the <em>New CV</em><br/>button to get started!</p>
+                  </div>
+                  <img className="hint-hand" src={SwipeSvg} alt="Click Here!"/>
+                </>)
+  }
   
   function printPage() {
     window.print();
@@ -48,7 +58,7 @@ function App() {
     <Dialog dialogType="new-cv-dialog" isOpen={newOpen}>
       {create}
     </Dialog>
-      {cv}
+      {cv ? cv : create ? null : emptyPage()}
     <Footer />
     </>
   )
