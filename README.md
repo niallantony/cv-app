@@ -1,5 +1,7 @@
 # CV Builder Application
 
+[Live Link](https://keen-bavarois-da7113.netlify.app)
+
 ## A first React application
 
 This application was made for *The Odin Project*'s React course, specifically to learn the use of the useState hook, and construction of an ordered website. While I tried to plan as much as possible at the start of this project, because of my lack of experience with React, I really didn't know the best way to split it down into components, probably something that I am going to be able to do much better going forwards. As such, a lot of my component names are also not too descriptive, which is something I plan to fix as well.
