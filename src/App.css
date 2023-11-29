@@ -88,3 +88,48 @@
     display:none;
   }
 }
+
+@media (max-width: 500px) {
+  .file-menu > h1 {
+    font-size: 2em;
+  }
+  .hint-hand {
+    left: 4rem;
+  }
+  #root {
+    width: 100vw;
+    padding: 1rem;
+  }
+  .footer {
+    display: none;
+  }
+  .add.add-button-container {
+    width: fit-content;
+     display: inline-block;
+    margin-left: 1rem;
+  }
+  .update-details {
+    display: inline;
+  }
+  .update-details, .add.add-button-container {
+    position:relative;
+    margin-bottom: 1rem;
+    top: 0;
+    right: 0;
+  }
+  .resume {
+    padding: 1rem 0;
+    border-radius: 0;
+    background-color: white;
+  }
+  .resume h3 {
+    margin: 0 1rem 1rem
+  } 
+  .section {
+    margin: 1rem 0 1rem;
+  }
+  .section-form .start-in,
+  .section-form .end-in {
+    grid-template-columns: 1fr;
+  }
+}

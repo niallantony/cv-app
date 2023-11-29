@@ -92,17 +92,17 @@ export function Document({person}) {
     }
 
     return (<div className='resume'>
-            <h1> {details.name}</h1>
             <Button buttonType="update-details" text={<img src={EditSvg} alt="Edit Details Button"/>} onClick={editDetails} />
+            <AddButton buttonType="add" choices={addList} onClick={showMenu} onSelect={addSection} isOpen={showAdd}/>
+            <h1> {details.name}</h1>
             {buildDetails().map((detail) => {
                 return (<h3 key={uuidv4()}>{detail} : {details[detail]}</h3>)
             })}
             {editPane}
             {orderedSections().map((section) => {
                 return (<Section key={section.id} title={section.title} onUp={() => moveUp(section)}
-                            onDown={() => moveDown(section)} onDelete={() => deleteSection(section)}/>)
+                onDown={() => moveDown(section)} onDelete={() => deleteSection(section)}/>)
             })}
-            <AddButton buttonType="add" choices={addList} onClick={showMenu} onSelect={addSection} isOpen={showAdd}/>
         </div>)
 
 }

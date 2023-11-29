@@ -23,6 +23,11 @@ dialog {
     align-items: center;
 }
 
+.body-text {
+    inline-size: 100%;
+    overflow-wrap: break-word;
+}
+
 .new-cv-dialog {
     position: absolute;
     top:0;
